@@ -12,7 +12,7 @@
 
 ## Bug 3 – bug3.js
 
-**Intended Behavior**: TThe program should take a list of numbers and add them together to find the total. For example, if the list is [5, 10, 15], it should display 30.
+**Intended Behavior**: The program should take a list of numbers and add them together to find the total. For example, if the list is [5, 10, 15], it should display 30.
 **Issue Type**: Off-by-one / loop logic error.
 **Notes**: The loop skips the first number and reads beyond the array, causing incorrect results.
 
