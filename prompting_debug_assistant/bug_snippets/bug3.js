@@ -9,6 +9,5 @@ function sumArray(arr) {
 let nums = [5, 10, 15, 20];
 console.log("Sum is:", sumArray(nums)); 
 
-// Another test
 let moreNums = [1, 2, 3];
 console.log("Sum is:", sumArray(moreNums));
