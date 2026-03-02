@@ -24,6 +24,6 @@
 
 ## Bug 5 – bug5.c
 
-**Intended Behavior**: The program should safely traverse the array, display each element, compute the total sum, and search for a target value without accessing invalid memory.
+**Intended Behavior**: The program should iterate through all valid elements of the array, print each value, calculate the correct total sum, and determine whether a specific target number exists in the array, without accessing memory outside the array bounds.
 **Issue Type**: Off-by-one / undefined behavior.
 **Notes**: The loop condition allows access beyond the valid array range, resulting in unpredictable behavior.
