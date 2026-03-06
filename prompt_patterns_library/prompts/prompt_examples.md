@@ -1,7 +1,8 @@
 # Prompt Testing Examples
 
 ## Example 1 – Refactoring Prompt
-**Prompt**: Refactor the following Python function for readability and clarity.  
+
+**Prompt**: Act like a Senior Developer and refactor the following Python function for readability and clarity.  
 **Input**:
 ``python
 def calc(a,b): return a+b*10
@@ -15,18 +16,21 @@ def calculate_total(a: int, b: int) -> int:
 
 
 ## Example 2 – Style Enforcement Prompt
-**Prompt**: Rewrite the following JavaScript code to follow consistent style guidelines.
+
+**Prompt**: Act like a Code Quality Reviewer and rewrite the following JavaScript code to follow consistent style guidelines.
 **Input**:
 function sum(x,y){return x+y;}
 **AI Output**:
 function sum(x, y) {
     return x + y;
 }
-**Feedback**: Correctly formatted with consistent spacing. Readability improved.
+**Feedback**: Act like a Debugging Specialist and identify the problem in the following Python code.
 
 
 ## Example 3 – Error Diagnosis Prompt
-**Prompt**: Identify the problem in the following Python code.
+
+**Prompt**: Act like a Debugging Specialist and identify the problem in the following Python code.
+Input Placeholder: [CODE_BLOCK] + [ERROR_MESSAGE_OR_DESCRIPTION]
 **Input**: 
 numbers = [1,2,3]
 print(numbers[3])
@@ -37,7 +41,8 @@ The code is trying to access the 4th element (index 3) of a list that has only 3
 
 
 ## Example 4 – Bug Fix Suggestion Prompt
-**Prompt**: Fix the following Java code that fails to compile.
+
+**Prompt**: Act like a Software Debugging Expert and fix the following Java code that fails to compile.
 **Input**:
 ArrayList<Integer> numbers = new ArrayList<>();
 numbers.add("10");
@@ -48,7 +53,8 @@ numbers.add(10);
 
 
 ## Example 5 – Unit Test Generation Prompt
-**Prompt**: Generate unit tests for the following Python function.
+
+**Prompt**: Act like a Software Testing Engineer and generate unit tests for the following Python function.
 **Input**:
 def multiply(a, b):
     return a * b
@@ -71,6 +77,7 @@ if __name__ == "__main__":
 
 
 ## Example 6 – Comment Generation Prompt
+
 **Prompt**: Add meaningful comments to the following C++ function.
 **Input**:
 int sum(int a, int b) { return a + b; }
