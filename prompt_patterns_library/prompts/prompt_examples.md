@@ -6,12 +6,10 @@
 **Input**:
 ``python
 def calc(a,b): return a+b*10
-
 **AI Output**:
 def calculate_total(a: int, b: int) -> int:
     """Return a plus b times 10."""
     return a + (b * 10)
-
 **Feedback**: Output is correct and readable. Docstring could be more descriptive about the calculation purpose.
 
 
