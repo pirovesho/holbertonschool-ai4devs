@@ -16,8 +16,7 @@ def calculate_total(a: int, b: int) -> int:
 ## Example 2 – Style Enforcement Prompt
 
 **Prompt**: Act like a Code Quality Reviewer and rewrite the following JavaScript code to follow consistent style guidelines.
-**Input**:
-function sum(x,y){return x+y;}
+**Input**: function sum(x,y){return x+y;}
 **AI Output**:
 function sum(x, y) {
     return x + y;
