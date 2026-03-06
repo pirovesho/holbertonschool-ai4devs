@@ -2,6 +2,7 @@
 
 ## Example 1 – Refactoring Prompt
 
+**Role**: Senior Developer  
 **Prompt**: Act like a Senior Developer and refactor the following Python function for readability and clarity.  
 **Input Placeholder**: [CODE_BLOCK]  
 **Input**:
@@ -14,8 +15,10 @@ def calculate_total(a: int, b: int) -> int:
 **Feedback**: Output is correct and readable. Docstring could be more descriptive about the calculation purpose.
 
 
+
 ## Example 2 – Style Enforcement Prompt
 
+**Role**: Code Quality Reviewer  
 **Prompt**: Act like a Code Quality Reviewer and rewrite the following JavaScript code to follow consistent style guidelines.
 **Input Placeholder**: [CODE_BLOCK]  
 **Input**: function sum(x,y){return x+y;}
@@ -26,8 +29,10 @@ function sum(x, y) {
 **Feedback**: Act like a Debugging Specialist and identify the problem in the following Python code.
 
 
+
 ## Example 3 – Error Diagnosis Prompt
 
+**Role**: Debugging Specialist  
 **Prompt**: Act like a Debugging Specialist and identify the problem in the following Python code.
 Input Placeholder: [CODE_BLOCK] + [ERROR_MESSAGE_OR_DESCRIPTION]
 **Input**: 
@@ -39,8 +44,10 @@ The code is trying to access the 4th element (index 3) of a list that has only 3
 **Feedback**: Accurate diagnosis, clearly explains why the error occurs.
 
 
+
 ## Example 4 – Bug Fix Suggestion Prompt
 
+**Role**: Software Debugging Expert  
 **Prompt**: Act like a Software Debugging Expert and fix the following Java code that fails to compile.
 **Input Placeholder**: [BUGGY_CODE]  
 **Input**:
@@ -52,10 +59,12 @@ numbers.add(10);
 **Feedback**: Correctly resolves type mismatch. Clear and simple.
 
 
+
 ## Example 5 – Unit Test Generation Prompt
 
+**Role**: Software Testing Engineer   
 **Prompt**: Act like a Software Testing Engineer and generate unit tests for the following Python function.
-**Prompt**: Generate unit tests for the given [LANGUAGE] function or module. 
+**Input Placeholder**: [FUNCTION_OR_MODULE_CODE]  
 **Input**:
 def multiply(a, b):
     return a * b
@@ -77,10 +86,12 @@ if __name__ == "__main__":
 **Feedback**: Tests cover normal, zero, and negative cases. Well-structured and ready to use.
 
 
+
 ## Example 6 – Comment Generation Prompt
 
+**Role**: Technical Documentation Specialist  
 **Prompt**: Add meaningful comments to the following C++ function.
-**Prompt**: Add meaningful comments to the given [LANGUAGE] code. 
+**Input Placeholder**: [CODE_BLOCK]  
 **Input**:
 int sum(int a, int b) { return a + b; }
 **AI Output**:
