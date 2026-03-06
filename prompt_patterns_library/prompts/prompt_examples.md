@@ -3,6 +3,7 @@
 ## Example 1 – Refactoring Prompt
 
 **Prompt**: Act like a Senior Developer and refactor the following Python function for readability and clarity.  
+**Input Placeholder**: [CODE_BLOCK]  
 **Input**:
 ``python
 def calc(a,b): return a+b*10
@@ -16,6 +17,7 @@ def calculate_total(a: int, b: int) -> int:
 ## Example 2 – Style Enforcement Prompt
 
 **Prompt**: Act like a Code Quality Reviewer and rewrite the following JavaScript code to follow consistent style guidelines.
+**Input Placeholder**: [CODE_BLOCK]  
 **Input**: function sum(x,y){return x+y;}
 **AI Output**:
 function sum(x, y) {
@@ -40,6 +42,7 @@ The code is trying to access the 4th element (index 3) of a list that has only 3
 ## Example 4 – Bug Fix Suggestion Prompt
 
 **Prompt**: Act like a Software Debugging Expert and fix the following Java code that fails to compile.
+**Input Placeholder**: [BUGGY_CODE]  
 **Input**:
 ArrayList<Integer> numbers = new ArrayList<>();
 numbers.add("10");
@@ -52,6 +55,7 @@ numbers.add(10);
 ## Example 5 – Unit Test Generation Prompt
 
 **Prompt**: Act like a Software Testing Engineer and generate unit tests for the following Python function.
+**Prompt**: Generate unit tests for the given [LANGUAGE] function or module. 
 **Input**:
 def multiply(a, b):
     return a * b
@@ -76,6 +80,7 @@ if __name__ == "__main__":
 ## Example 6 – Comment Generation Prompt
 
 **Prompt**: Add meaningful comments to the following C++ function.
+**Prompt**: Add meaningful comments to the given [LANGUAGE] code. 
 **Input**:
 int sum(int a, int b) { return a + b; }
 **AI Output**:
