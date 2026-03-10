@@ -1,0 +1,33 @@
+flowchart LR
+
+    A[Mobile App / Web App] --> B[API Gateway]
+
+    B --> C[Authentication Service]
+    B --> D[Ride Matching Service]
+    B --> E[Notification Service]
+    B --> F[Analytics & Reporting Service]
+
+    C --> G[(User Database)]
+    D --> H[(Ride Database)]
+    D --> G
+    F --> H
+    F --> G
+
+    E --> I[Push Notification / Email Service]
+
+    subgraph Client Layer
+        A
+    end
+
+    subgraph Backend Services
+        B
+        C
+        D
+        E
+        F
+    end
+
+    subgraph Data Layer
+        G
+        H
+    end
