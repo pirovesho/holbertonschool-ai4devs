@@ -4,13 +4,13 @@
 Enable companies to reduce their environmental footprint and commuting costs by providing an intelligent corporate carpooling platform that connects employees with compatible commute partners.
 
 ## Users
-- **Corporate Employees**: want affordable, convenient, and reliable ways to commute while reducing fuel costs and travel stress.
-- **HR Managers**: want tools to monitor employee satisfaction, encourage sustainable practices, and support corporate sustainability initiatives.
-- **Facility Managers**: want to optimize parking usage, reduce congestion in company parking areas, and improve transportation planning.
+- **Corporate Employees**: want an affordable and convenient way to commute, reduce fuel expenses, and find colleagues with similar schedules and routes for carpooling.
+- **HR Managers**: want to promote sustainability initiatives, improve employee satisfaction, and track participation in corporate commuting programs.
+- **Facility Managers**: want better control of parking resources, reduced congestion in company parking areas, and data to optimize transportation and parking space allocation.
 
 ## Key Features
-- Smart matching algorithm that pairs employees with compatible schedules, locations, and preferences.
-- Corporate Single Sign-On (SSO) integration to securely connect with company systems and employee accounts.
-- Environmental impact tracking that measures emissions reduced through carpooling.
-- Cost savings analytics that show employees and companies how much money is saved on commuting.
-- Parking optimization tools that help companies manage parking spaces more efficiently and encourage shared rides.
+- Smart matching algorithm that pairs employees based on commute routes, schedules, and preferences to maximize carpool compatibility.
+- Corporate Single Sign-On (SSO) integration for secure access through existing company accounts and systems.
+- Environmental impact tracking that measures reduced CO₂ emissions generated through shared commuting.
+- Cost savings analytics that display fuel and commuting cost reductions for both employees and organizations.
+- Parking optimization tools that help companies manage limited parking spaces and encourage shared vehicle usage.
