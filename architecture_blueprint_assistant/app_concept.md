@@ -9,9 +9,10 @@ Group expense tracking and bill splitting application designed to help people ma
 - Automatic balance calculation between group members
 
 ## Users
+- System Administrators: maintain the platform, manage user accounts, and ensure system stability
 - Regular Users: friends, roommates, or groups who want to track and split shared expenses
 - Group Admins: users who create and manage groups, invite members, and oversee group expenses
-- System Administrators: maintain the platform, manage user accounts, and ensure system stability
+
 
 ## Constraints
 - Scalability: the system should support a growing number of users and groups without performance issues
