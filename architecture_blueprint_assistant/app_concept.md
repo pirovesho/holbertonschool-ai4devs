@@ -11,7 +11,6 @@ Group expense tracking and bill splitting application designed to help people ma
 ## Users
 - System Administrators: maintain the platform, manage user accounts, and ensure system stability
 - Regular Users: friends, roommates, or groups who want to track and split shared expenses
-- Group Admins: users who create and manage groups, invite members, and oversee group expenses
 
 
 ## Constraints
