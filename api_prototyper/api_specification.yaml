@@ -1,8 +1,8 @@
 openapi: 3.0.0
 info:
   title: Expense Mate API
-  description: Compliant API for managing collaborative group expenses and settlements.
-  version: 1.0.1
+  description: Fully compliant API for Expense Mate with multiple Full CRUD resources and strict error handling.
+  version: 1.1.0
 servers:
   - url: https://api.expensemate.com/v1
 
@@ -20,7 +20,6 @@ components:
         id: { type: string, format: uuid }
         description: { type: string }
         amount: { type: number, minimum: 0.01 }
-        category: { type: string }
         payer_id: { type: string, format: uuid }
     Group:
       type: object
@@ -32,7 +31,7 @@ components:
       type: object
       properties:
         message: { type: string }
-        error_code: { type: string }
+        status: { type: integer }
 
 security:
   - BearerAuth: []
@@ -40,83 +39,71 @@ security:
 paths:
   /auth/login:
     post:
-      summary: User Login (Authentication)
+      summary: User Authentication
       security: []
       responses:
-        200:
-          description: OK - Returns JWT
-        401:
-          description: Unauthorized - Invalid credentials
-          content:
-            application/json:
-              schema: { $ref: '#/components/schemas/Error' }
+        200: { description: "Success" }
+        401: { description: "Unauthorized", content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }
 
   /groups:
     get:
-      summary: List Groups (Read)
+      summary: Read all groups
       responses:
-        200:
-          description: OK
+        200: { description: "Success" }
+        401: { description: "Unauthorized" }
     post:
-      summary: Create Group (Create)
+      summary: Create a group
       responses:
-        201:
-          description: Created
-        400:
-          description: Bad Request - Missing required fields
+        201: { description: "Created" }
+        400: { description: "Bad Request" }
+
+  /groups/{id}:
+    put:
+      summary: Update a group
+      parameters: [{ name: id, in: path, required: true, schema: { type: string } }]
+      responses:
+        200: { description: "Updated" }
+        404: { description: "Not Found" }
+    delete:
+      summary: Delete a group
+      parameters: [{ name: id, in: path, required: true, schema: { type: string } }]
+      responses:
+        204: { description: "Deleted" }
+        404: { description: "Not Found" }
 
   /expenses:
     get:
-      summary: List Expenses (Read with Pagination)
+      summary: Read all expenses (Pagination)
       parameters:
         - name: page
           in: query
           schema: { type: integer, default: 1 }
-        - name: limit
-          in: query
-          schema: { type: integer, default: 10 }
       responses:
-        200:
-          description: OK - Paginated list
+        200: { description: "Success" }
+        401: { description: "Unauthorized" }
     post:
-      summary: Add Expense (Create)
+      summary: Create an expense
       responses:
-        201:
-          description: Created
-        400:
-          description: Bad Request - Invalid data
+        201: { description: "Created" }
+        400: { description: "Bad Request" }
 
   /expenses/{id}:
+    get:
+      summary: Read single expense
+      parameters: [{ name: id, in: path, required: true, schema: { type: string } }]
+      responses:
+        200: { description: "Success" }
+        404: { description: "Not Found" }
     put:
-      summary: Update Expense (Update)
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema: { type: string, format: uuid }
+      summary: Update an expense
+      parameters: [{ name: id, in: path, required: true, schema: { type: string } }]
       responses:
-        200:
-          description: OK - Updated
-        404:
-          description: Not Found - Expense ID does not exist
+        200: { description: "Updated" }
+        400: { description: "Bad Request" }
+        404: { description: "Not Found" }
     delete:
-      summary: Remove Expense (Delete)
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema: { type: string, format: uuid }
+      summary: Delete an expense
+      parameters: [{ name: id, in: path, required: true, schema: { type: string } }]
       responses:
-        204:
-          description: No Content - Deleted
-        404:
-          description: Not Found
-
-  /settlements:
-    post:
-      summary: Settle Debt (Action/Create)
-      responses:
-        201:
-          description: Settlement Created
-        400:
-          description: Bad Request
+        204: { description: "Deleted" }
+        404: { description: "Not Found" }

@@ -2,32 +2,17 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Expense Mate API",
-    "description": "Compliant API for managing collaborative group expenses and settlements.",
-    "version": "1.0.1"
+    "version": "1.1.0",
+    "description": "Full CRUD API with explicit error handling and JWT."
   },
-  "servers": [{ "url": "https://api.expensemate.com/v1" }],
   "components": {
     "securitySchemes": {
       "BearerAuth": { "type": "http", "scheme": "bearer", "bearerFormat": "JWT" }
     },
     "schemas": {
-      "Expense": {
-        "type": "object",
-        "required": ["description", "amount", "payer_id"],
-        "properties": {
-          "id": { "type": "string", "format": "uuid" },
-          "description": { "type": "string" },
-          "amount": { "type": "number", "minimum": 0.01 },
-          "category": { "type": "string" },
-          "payer_id": { "type": "string", "format": "uuid" }
-        }
-      },
       "Error": {
         "type": "object",
-        "properties": {
-          "message": { "type": "string" },
-          "error_code": { "type": "string" }
-        }
+        "properties": { "message": { "type": "string" }, "status": { "type": "integer" } }
       }
     }
   },
@@ -35,7 +20,6 @@
   "paths": {
     "/auth/login": {
       "post": {
-        "summary": "User Login (Authentication)",
         "security": [],
         "responses": {
           "200": { "description": "OK" },
@@ -44,34 +28,21 @@
       }
     },
     "/groups": {
-      "get": { "summary": "List Groups (Read)", "responses": { "200": { "description": "OK" } } },
-      "post": { "summary": "Create Group (Create)", "responses": { "201": { "description": "Created" }, "400": { "description": "Bad Request" } } }
+      "get": { "responses": { "200": { "description": "OK" }, "401": { "description": "Unauthorized" } } },
+      "post": { "responses": { "201": { "description": "Created" }, "400": { "description": "Bad Request" } } }
+    },
+    "/groups/{id}": {
+      "put": { "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "OK" }, "404": { "description": "Not Found" } } },
+      "delete": { "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }], "responses": { "204": { "description": "No Content" }, "404": { "description": "Not Found" } } }
     },
     "/expenses": {
-      "get": {
-        "summary": "List Expenses (Read with Pagination)",
-        "parameters": [
-          { "name": "page", "in": "query", "schema": { "type": "integer", "default": 1 } },
-          { "name": "limit", "in": "query", "schema": { "type": "integer", "default": 10 } }
-        ],
-        "responses": { "200": { "description": "OK" } }
-      },
-      "post": { "summary": "Add Expense (Create)", "responses": { "201": { "description": "Created" }, "400": { "description": "Bad Request" } } }
+      "get": { "parameters": [{ "name": "page", "in": "query", "schema": { "type": "integer" } }], "responses": { "200": { "description": "OK" } } },
+      "post": { "responses": { "201": { "description": "Created" }, "400": { "description": "Bad Request" } } }
     },
     "/expenses/{id}": {
-      "put": {
-        "summary": "Update Expense (Update)",
-        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string", "format": "uuid" } }],
-        "responses": { "200": { "description": "OK" }, "404": { "description": "Not Found" } }
-      },
-      "delete": {
-        "summary": "Remove Expense (Delete)",
-        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string", "format": "uuid" } }],
-        "responses": { "204": { "description": "No Content" }, "404": { "description": "Not Found" } }
-      }
-    },
-    "/settlements": {
-      "post": { "summary": "Settle Debt (Action/Create)", "responses": { "201": { "description": "Settlement Created" }, "400": { "description": "Bad Request" } } }
+      "get": { "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "OK" }, "404": { "description": "Not Found" } } },
+      "put": { "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "OK" }, "404": { "description": "Not Found" } } },
+      "delete": { "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }], "responses": { "204": { "description": "No Content" }, "404": { "description": "Not Found" } } }
     }
   }
 }
