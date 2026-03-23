@@ -1,11 +1,10 @@
 openapi: 3.0.0
 info:
   title: Expense Mate API
-  description: API for managing collaborative group expenses, splits, and settlements.
-  version: 1.0.0
+  description: Compliant API for managing collaborative group expenses and settlements.
+  version: 1.0.1
 servers:
   - url: https://api.expensemate.com/v1
-    description: Production server
 
 components:
   securitySchemes:
@@ -16,18 +15,24 @@ components:
   schemas:
     Expense:
       type: object
+      required: [description, amount, payer_id]
       properties:
         id: { type: string, format: uuid }
         description: { type: string }
-        amount: { type: number, format: decimal }
+        amount: { type: number, minimum: 0.01 }
         category: { type: string }
         payer_id: { type: string, format: uuid }
-        date: { type: string, format: date }
+    Group:
+      type: object
+      required: [name]
+      properties:
+        id: { type: string, format: uuid }
+        name: { type: string }
     Error:
       type: object
       properties:
-        code: { type: integer }
         message: { type: string }
+        error_code: { type: string }
 
 security:
   - BearerAuth: []
@@ -35,22 +40,34 @@ security:
 paths:
   /auth/login:
     post:
-      summary: User Login
+      summary: User Login (Authentication)
       security: []
       responses:
         200:
-          description: Returns JWT Token
-  
+          description: OK - Returns JWT
+        401:
+          description: Unauthorized - Invalid credentials
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+
   /groups:
+    get:
+      summary: List Groups (Read)
+      responses:
+        200:
+          description: OK
     post:
-      summary: Create a new group
+      summary: Create Group (Create)
       responses:
         201:
-          description: Group created successfully
+          description: Created
+        400:
+          description: Bad Request - Missing required fields
 
   /expenses:
     get:
-      summary: Get all expenses (with Pagination)
+      summary: List Expenses (Read with Pagination)
       parameters:
         - name: page
           in: query
@@ -60,38 +77,46 @@ paths:
           schema: { type: integer, default: 10 }
       responses:
         200:
-          description: A paginated list of expenses
+          description: OK - Paginated list
     post:
-      summary: Add a new expense
+      summary: Add Expense (Create)
       responses:
         201:
-          description: Expense and splits created
+          description: Created
+        400:
+          description: Bad Request - Invalid data
 
-  /expenses/{expenseId}:
+  /expenses/{id}:
     put:
-      summary: Update an expense
+      summary: Update Expense (Update)
       parameters:
-        - name: expenseId
+        - name: id
           in: path
           required: true
-          schema: { type: string }
+          schema: { type: string, format: uuid }
       responses:
         200:
-          description: Expense updated
+          description: OK - Updated
+        404:
+          description: Not Found - Expense ID does not exist
     delete:
-      summary: Delete an expense
+      summary: Remove Expense (Delete)
       parameters:
-        - name: expenseId
+        - name: id
           in: path
           required: true
-          schema: { type: string }
+          schema: { type: string, format: uuid }
       responses:
         204:
-          description: Expense deleted
+          description: No Content - Deleted
+        404:
+          description: Not Found
 
   /settlements:
     post:
-      summary: Mark a debt as settled
+      summary: Settle Debt (Action/Create)
       responses:
-        200:
-          description: Debt status updated to Paid
+        201:
+          description: Settlement Created
+        400:
+          description: Bad Request
