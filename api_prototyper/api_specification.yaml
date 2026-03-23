@@ -1,0 +1,97 @@
+openapi: 3.0.0
+info:
+  title: Expense Mate API
+  description: API for managing collaborative group expenses, splits, and settlements.
+  version: 1.0.0
+servers:
+  - url: https://api.expensemate.com/v1
+    description: Production server
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Expense:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        description: { type: string }
+        amount: { type: number, format: decimal }
+        category: { type: string }
+        payer_id: { type: string, format: uuid }
+        date: { type: string, format: date }
+    Error:
+      type: object
+      properties:
+        code: { type: integer }
+        message: { type: string }
+
+security:
+  - BearerAuth: []
+
+paths:
+  /auth/login:
+    post:
+      summary: User Login
+      security: []
+      responses:
+        200:
+          description: Returns JWT Token
+  
+  /groups:
+    post:
+      summary: Create a new group
+      responses:
+        201:
+          description: Group created successfully
+
+  /expenses:
+    get:
+      summary: Get all expenses (with Pagination)
+      parameters:
+        - name: page
+          in: query
+          schema: { type: integer, default: 1 }
+        - name: limit
+          in: query
+          schema: { type: integer, default: 10 }
+      responses:
+        200:
+          description: A paginated list of expenses
+    post:
+      summary: Add a new expense
+      responses:
+        201:
+          description: Expense and splits created
+
+  /expenses/{expenseId}:
+    put:
+      summary: Update an expense
+      parameters:
+        - name: expenseId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        200:
+          description: Expense updated
+    delete:
+      summary: Delete an expense
+      parameters:
+        - name: expenseId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        204:
+          description: Expense deleted
+
+  /settlements:
+    post:
+      summary: Mark a debt as settled
+      responses:
+        200:
+          description: Debt status updated to Paid
