@@ -1,0 +1,25 @@
+# .copilot-settings.yaml - ExpenseMate Rules
+
+version: 1.0
+project_context: "Group Expense Sharing Platform"
+
+language_rules:
+  python:
+    framework: "FastAPI"
+    orm: "SQLAlchemy"
+    math: "Always use decimal.Decimal for monetary values. Never use floats."
+    id_style: "UUID v4"
+  javascript:
+    framework: "React 18"
+    styling: "Tailwind CSS"
+    components: "Functional"
+
+custom_workflows:
+  doc_generation:
+    template: "Generate docstrings in Google Format for all FastAPI endpoints."
+  code_review:
+    focus: ["SQL Injection", "JWT Validation", "Input Sanitization"]
+
+excluded_paths:
+  - "**/node_modules/**"
+  - "**/.env"
